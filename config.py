@@ -1,0 +1,9 @@
+class Config(object):
+    SECRET_KEY = 'Clave nueva'
+    SESSION_COOKIE_SECURE = False
+    
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:5445@localhost/idgs802'
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
