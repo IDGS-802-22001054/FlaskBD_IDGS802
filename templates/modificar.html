@@ -3,13 +3,14 @@
 {% block container %}
 
 
-<form class="max-w-sm mx-auto space-y-4" method="post" action="{{ url_for('alumnos') }}">
+<form class="max-w-sm mx-auto space-y-4" method="post" action="{{ url_for('modificar') }}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="id" value="{{ form.id.data or '' }}">
     {{ macros.campoNuevo(form.nombre, "block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
     {{ macros.campoNuevo(form.apaterno, "block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
     {{ macros.campoNuevo(form.email, "bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body") }}
     <button type="submit" class="w-full rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90">
-        Guardar alumno
+        Actualizar
     </button>
 </form>
 
