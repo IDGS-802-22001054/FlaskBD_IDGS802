@@ -14,10 +14,13 @@ class UserForm(Form):
         validators.DataRequired(message="El campo es requerido"), 
     ])
     
-    apaterno = StringField("Apellido aterno",[
+    apellidos = StringField("Apellidos",[
         validators.DataRequired(message="El campo es requerido")
     ])
     email = EmailField("Email", [
+        validators.DataRequired(message="El campo es requerido")
+    ])
+    telefono = StringField("Telefono",[
         validators.DataRequired(message="El campo es requerido")
     ])
     created_date = DateField("created_date", [

@@ -28,10 +28,13 @@
                     Nombre
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
-                    Apellido paterno
+                    Apellidos
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
                     Email
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    Telefono
                 </th>
                 <th scope="col" class="px-6 py-3 font-medium">
                     
@@ -52,10 +55,13 @@
                     {{alumn.nombre}}
                 </th>
                 <td class="px-6 py-4">
-                    {{alumn.apaterno}}
+                    {{alumn.apellidos}}
                 </td>
                 <td class="px-6 py-4">
                     {{alumn.email}}
+                </td>
+                <td class="px-6 py-4">
+                    {{alumn.telefono}}
                 </td>
                 <td class="px-6 py-4">
                     <a href="{{ url_for('detalles', id=alumn.id) }}" class="font-medium text-yellow-500 hover:underline">Detalles</a>
