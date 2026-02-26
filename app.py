@@ -1,7 +1,7 @@
 from wtforms.validators import email
-
 from flask import Flask, render_template, request, redirect, url_for, flash, g
 from flask_wtf.csrf import CSRFProtect
+from flask_migrate import Migrate, migrate
 from config import DevelopmentConfig
 import forms
 from models import db, Alumno
@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 db.init_app(app)
 csrf = CSRFProtect()
+migrate = Migrate(app,db)
 
 @app.route("/", methods = ['GET', 'POST'])
 @app.route("/index")
@@ -72,6 +73,26 @@ def modificar():
         return redirect(url_for('index'))
     
     return render_template("modificar.html", form=create_form)
+
+@app.route("/eliminar", methods = ['GET', 'POST'])
+def eliminar():
+    create_form = forms.UserForm(request.form)
+    
+    if request.method == 'GET':
+        id = request.args.get('id')
+        alumn1 = db.session.query(Alumno).filter(Alumno.id == id).first()
+        create_form.id.data = request.args.get('id')
+        create_form.nombre.data = alumn1.nombre
+        create_form.apaterno.data = alumn1.apaterno
+        create_form.email.data = alumn1.email
+    if request.method == 'POST':
+        id = create_form.id.data
+        alumn1 = db.session.query(Alumno).filter(Alumno.id == id).first()
+        db.session.delete(alumn1)
+        db.session.commit()
+        return redirect(url_for('index'))
+    
+    return render_template("eliminar.html", form=create_form)
 
 
 if __name__ == '__main__':
