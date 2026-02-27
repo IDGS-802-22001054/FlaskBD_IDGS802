@@ -17,6 +17,9 @@ class UserForm(Form):
     apellidos = StringField("Apellidos",[
         validators.DataRequired(message="El campo es requerido")
     ])
+    especialidad = StringField("Apellidos",[
+        validators.DataRequired(message="El campo es requerido")
+    ])
     email = EmailField("Email", [
         validators.DataRequired(message="El campo es requerido")
     ])

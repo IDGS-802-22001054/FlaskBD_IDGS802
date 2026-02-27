@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{%import "_macros.html" as macros%}
+{% block container %}
+
+
+<form class="max-w-sm mx-auto space-y-4" method="post" action="{{ url_for('maestros.eliminar_maestro') }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="matricula" value="{{ maestro.matricula }}">
+
+    <input
+      name="nombre"
+      type="text"
+      value="{{ maestro.nombre }}"
+      readonly
+      class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base"
+    >
+    <input
+      name="apellidos"
+      type="text"
+      value="{{ maestro.apellidos }}"
+      readonly
+      class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base"
+    >
+    <input
+      name="especialidad"
+      type="text"
+      value="{{ maestro.especialidad }}"
+      readonly
+      class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base"
+    >
+    <input
+      name="email"
+      type="email"
+      value="{{ maestro.email }}"
+      readonly
+      class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base"
+    >
+    <button type="submit" class="w-full rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90">
+        Eliminar 
+    </button>
+</form>
+
+
+{%endblock%}

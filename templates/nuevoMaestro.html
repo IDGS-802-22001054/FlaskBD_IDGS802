@@ -1,0 +1,50 @@
+{% extends "layout.html" %} {% block container %}
+
+<form
+  class="max-w-sm mx-auto space-y-4"
+  method="post"
+  action="{{ url_for('maestros.agregar_maestro') }}"
+>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+    <input
+    name="nombre"
+    type="text"
+    required
+    placeholder="Nombre"
+    class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base focus:outline-none focus:ring-0 focus:border-brand"
+  />
+
+  <input
+    name="apellidos"
+    type="text"
+    required
+    placeholder="Apellidos"
+    class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base focus:outline-none focus:ring-0 focus:border-brand"
+  />
+
+  <input
+    name="especialidad"
+    type="text"
+    required
+    placeholder="Especialidad"
+    class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base focus:outline-none focus:ring-0 focus:border-brand"
+  />
+
+  <input
+    name="email"
+    type="email"
+    required
+    placeholder="Email"
+    class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base focus:outline-none focus:ring-0 focus:border-brand"
+  />
+
+  <button
+    type="submit"
+    class="w-full rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+  >
+    Guardar maestro
+  </button>
+</form>
+
+{% endblock %}
