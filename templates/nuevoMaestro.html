@@ -7,7 +7,7 @@
 >
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
-    <input
+  <input
     name="nombre"
     type="text"
     required
@@ -39,12 +39,20 @@
     class="block py-2.5 px-3 w-full text-sm text-heading bg-transparent border border-default-medium rounded-base focus:outline-none focus:ring-0 focus:border-brand"
   />
 
-  <button
-    type="submit"
-    class="w-full rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90"
-  >
-    Guardar maestro
-  </button>
+  <div class="flex gap-3">
+    <button
+      type="submit"
+      class="rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+    >
+      Guardar maestro
+    </button>
+    <a
+      href="{{ url_for('maestros.maestros_index') }}"
+      class="rounded-base border border-default-medium px-4 py-2 text-sm font-medium text-heading hover:bg-neutral-secondary-medium"
+    >
+      Volver
+    </a>
+  </div>
 </form>
 
 {% endblock %}

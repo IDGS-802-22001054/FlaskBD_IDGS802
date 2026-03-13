@@ -1,40 +1,38 @@
-{% extends "layout.html" %} {%import "_macros.html" as macros%} {% block
+{% extends "layout.html" %} {% import "_macros.html" as macros %} {% block
 container %}
-
 <form
   class="max-w-sm mx-auto space-y-4"
   method="post"
-  action="{{ url_for('alumnos.modificar') }}"
+  action="{{ url_for('cursos.eliminar_curso') }}"
 >
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <input type="hidden" name="id" value="{{ form.id.data or '' }}" />
   {{ macros.campoNuevo(form.nombre, "block py-2.5 px-0 w-full text-sm
   text-heading bg-transparent border-0 border-b-2 border-default-medium
   appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
-  {{ macros.campoNuevo(form.apellidos, "block py-2.5 px-0 w-full text-sm
-  text-heading bg-transparent border-0 border-b-2 border-default-medium
-  appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
-  {{ macros.campoNuevo(form.telefono, "block py-2.5 px-0 w-full text-sm
-  text-heading bg-transparent border-0 border-b-2 border-default-medium
-  appearance-none focus:outline-none focus:ring-0 focus:border-brand peer") }}
-  {{ macros.campoNuevo(form.email, "bg-neutral-secondary-medium border
+  {{ macros.campoNuevo(form.descripcion, "bg-neutral-secondary-medium border
+  border-default-medium text-heading text-sm rounded-base focus:ring-brand
+  focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body")
+  }} {{ macros.campoNuevo(form.maestro_id, "bg-neutral-secondary-medium border
   border-default-medium text-heading text-sm rounded-base focus:ring-brand
   focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body")
   }}
+  <p class="text-sm text-red-500">
+    Desea eliminar el curso permanente?
+  </p>
   <div class="flex gap-3">
     <button
       type="submit"
-      class="rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+      class="rounded-base bg-red-600 px-4 py-2 text-sm font-medium text-white hover:opacity-90"
     >
-      Actualizar
+      Confirmar eliminacion
     </button>
     <a
-      href="{{ url_for('alumnos.index_alumnos') }}"
+      href="{{ url_for('cursos.index_cursos') }}"
       class="rounded-base border border-default-medium px-4 py-2 text-sm font-medium text-heading hover:bg-neutral-secondary-medium"
     >
       Cancelar
     </a>
   </div>
 </form>
-
-{%endblock%}
+{% endblock %}

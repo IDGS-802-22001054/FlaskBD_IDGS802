@@ -2,11 +2,6 @@
 
 <td>{{field.label}}</td>
 <dd>{{field(class_=clase) | safe}}</dd>
-{%if field.errors%}
-    {%for error in field.errors%}
-        <li style="color: red;">{{error}}</li>
-    {%endfor%}
-    
-{%endif%}
-
-{% endmacro %}
+{%if field.errors%} {%for error in field.errors%}
+<li style="color: red">{{error}}</li>
+{%endfor%} {%endif%} {% endmacro %}

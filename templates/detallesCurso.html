@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block container %}
+<div
+  class="max-w-xl mx-auto bg-neutral-primary-soft border border-default rounded-base p-6 shadow-xs space-y-3"
+>
+  <h2 class="text-2xl font-semibold text-heading">Detalles del curso</h2>
+  <p class="text-body">
+    <span class="font-medium text-heading">Nombre:</span> {{ curso.nombre }}
+  </p>
+  <p class="text-body">
+    <span class="font-medium text-heading">Descripcion:</span> {{
+    curso.descripcion }}
+  </p>
+  <p class="text-body">
+    <span class="font-medium text-heading">Maestro:</span>
+    {{ curso.maestro.nombre }} {{ curso.maestro.apellidos }} ({{
+    curso.maestro.matricula }})
+  </p>
+
+  <div class="pt-2 border-t border-default-medium">
+    <h3 class="text-lg font-semibold text-heading mb-2">Inscribir alumno</h3>
+    {% if alumnos_disponibles %}
+    <form
+      method="post"
+      action="{{ url_for('cursos.inscribir_alumno') }}"
+      class="space-y-3"
+    >
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <input type="hidden" name="curso_id" value="{{ curso.id }}" />
+
+      <select
+        name="alumno_id"
+        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+        required
+      >
+        <option value="">Selecciona un alumno</option>
+        {% for alumno in alumnos_disponibles %}
+        <option value="{{ alumno.id }}">
+          {{ alumno.nombre }} {{ alumno.apellidos }} - {{ alumno.email }}
+        </option>
+        {% endfor %}
+      </select>
+
+      <button
+        type="submit"
+        class="rounded-base bg-fg-brand px-4 py-2 text-sm font-medium text-white hover:opacity-90"
+      >
+        Inscribir
+      </button>
+    </form>
+    {% else %}
+    <p class="text-body">Todos los alumnos ya estan inscritos en este curso.</p>
+    {% endif %}
+  </div>
+
+  <div class="pt-2 border-t border-default-medium">
+    <h3 class="text-lg font-semibold text-heading mb-2">Alumnos inscritos</h3>
+    {% if curso.alumnos %}
+    <ul class="space-y-2">
+      {% for alumno in curso.alumnos %}
+      <li class="text-body">
+        {{ alumno.nombre }} {{ alumno.apellidos }} - {{ alumno.email }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-body">Aun no hay alumnos inscritos.</p>
+    {% endif %}
+  </div>
+
+  <a
+    href="{{ url_for('cursos.index_cursos') }}"
+    class="inline-block rounded-base border border-default-medium px-4 py-2 text-sm font-medium text-heading hover:bg-neutral-secondary-medium"
+  >
+    Volver
+  </a>
+</div>
+{% endblock %}
